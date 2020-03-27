@@ -48,9 +48,9 @@ bin_file: .space MAX_BIN_FILE_SIZE
 
 
 
-bin_name: 	.asciiz "input_2.bin"
+bin_name: 	.asciiz "input.bin"
 bmp_input_name: .asciiz "source.bmp"
-bmp_output_name:.asciiz "output_2.bmp"
+bmp_output_name:.asciiz "output.bmp"
 file_error_b: 	.asciiz "Instruction file not found. Terminating!"
 file_error_i: 	.asciiz "Input bmp file not found. Terminating!"
 colors:     	.word COLR_BLACK, COLR_RED, COLR_GREEN, COLR_BLUE, COLR_YELL, COLR_CYAN, COLR_PURPL, COLR_WHITE	
@@ -74,7 +74,7 @@ main:
 	
 	
 main_loop:
-	lbu 	$t0, 0($s0) # t0 will hold instructions (16 bit)
+	lbu 	$t0, 0($s0) 	#t0 will hold instructions (16 bit)
 	sll 	$t0, $t0, 8
 	lbu  	$t1, 1($s0)
 	or 	$t0, $t0, $t1
@@ -274,7 +274,8 @@ read_bmp:
         li 	$a2, 0			#mode: ignored
         syscall
 	move 	$s1, $v0      		#save the file descriptor
-	
+
+#if descriptor is lower than 0 then terminate the program with message
 	bgt	$s1, 0, readff
 	li	$v0, 4  
 	la 	$a0, file_error_i
@@ -314,7 +315,8 @@ save_bmp:
         li 	$a2, 0		#mode: ignored
         syscall
 	move 	$s1, $v0      	#save the file descriptor
-	
+
+	#if descriptor is lower than 0 then terminate the program with message	
 	bgt	$s1, 0, save_im
 	li	$v0, 4  
 	la 	$a0, file_error_i
