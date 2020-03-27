@@ -48,9 +48,9 @@ bin_file: .space MAX_BIN_FILE_SIZE
 
 
 
-bin_name: 	.asciiz "input.bin"
+bin_name: 	.asciiz "input_2.bin"
 bmp_input_name: .asciiz "source.bmp"
-bmp_output_name:.asciiz "output.bmp"
+bmp_output_name:.asciiz "output_2.bmp"
 file_error_b: 	.asciiz "Instruction file not found. Terminating!"
 file_error_i: 	.asciiz "Input bmp file not found. Terminating!"
 colors:     	.word COLR_BLACK, COLR_RED, COLR_GREEN, COLR_BLUE, COLR_YELL, COLR_CYAN, COLR_PURPL, COLR_WHITE	
